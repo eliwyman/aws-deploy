@@ -2,7 +2,7 @@ sudo apt-get update -y
 sudo apt-get install nginx -y
 sudo ufw allow 'Nginx HTTP'
 sudo ufw allow 'OpenSSH'
-sudo ufw enable
+sudo ufw --force enable
 sudo ufw status
 
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password your_password'
