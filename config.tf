@@ -3,6 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
-  ami           = "ami-0cd3dfa4e37921605"
+  ami           = "ami-0653e888ec96eab9b"
   instance_type = "t2.nano"
+  key_name	= "login"
 }
