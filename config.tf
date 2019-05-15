@@ -7,4 +7,5 @@ resource "aws_instance" "example" {
   instance_type = "t2.nano"
   key_name	= "login"
   user_data	= "${file("userdata.tpl")}"
+  iam_instance_profile = "${aws_iam_instance_profile.test_profile.name}"
 }
