@@ -43,3 +43,13 @@ resource "aws_autoscaling_group" "eliwyman_asg" {
     version = "$Latest"
   }
 }
+
+resource "aws_autoscaling_policy" "eliwyman_asgp" {
+  name                   = "eliwyman_test"
+  cooldown               = 300
+  autoscaling_group_name = "${aws_autoscaling_group.eliwyman_asg.name}"
+  scaling_adjustment	 = 1
+  adjustment_type	 = "ChangeInCapacity"
+}
+
+
