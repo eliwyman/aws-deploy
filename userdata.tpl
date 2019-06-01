@@ -12,3 +12,5 @@ chmod o+x /home/ubuntu/init.sh
 
 # run install scripts
 /home/ubuntu/init.sh
+
+# subscribe to cloudwatch email subscription via aws-cli

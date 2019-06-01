@@ -20,6 +20,11 @@ resource "aws_sns_topic" "alarm" {
 }
 EOF
 
+  provisioner "local-exec" {
+    command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ${var.alarms_email} --region us-east-2"
+  }
+
+}
 
 resource "aws_cloudwatch_metric_alarm" "cpu" {
   alarm_name                = "web-cpu-alarm"

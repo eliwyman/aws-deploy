@@ -1,7 +1,3 @@
-provider "aws" {
-  region     = "us-east-2"
-}
-
 resource "aws_launch_template" "eliwyman_ubuntu" {
   block_device_mappings {
     device_name 	= "/dev/sda1"
@@ -19,11 +15,6 @@ resource "aws_launch_template" "eliwyman_ubuntu" {
   image_id		= "ami-0653e888ec96eab9b"
   instance_type 	= "t2.nano"
   key_name		= "login"
-
-# placement {
-#   availability_zone = "us-west-2a"
-# }
-
   user_data		= "${base64encode(file("userdata.tpl"))}"
   vpc_security_group_ids = ["sg-3c83ff52"]
 
