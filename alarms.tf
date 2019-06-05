@@ -21,7 +21,7 @@ resource "aws_sns_topic" "alarm" {
 EOF
 
   provisioner "local-exec" {
-    command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ${var.alarms_email} --region us-east-2"
+    command = "aws sns subscribe --topic-arn ${self.arn} --protocol email --notification-endpoint ${var.alarms_email}"
   }
 
 }
