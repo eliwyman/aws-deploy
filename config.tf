@@ -23,11 +23,14 @@ resource "aws_launch_template" "eliwyman_ubuntu" {
 resource "aws_autoscaling_group" "eliwyman_asg" {
 
 #  (Required only for EC2-Classic)
-  availability_zones = ["us-east-2a"]
+  availability_zones 		= ["us-east-2a"]
 
-  desired_capacity   = 2
-  max_size           = 4
-  min_size           = 2
+  desired_capacity   		= 2
+  max_size           		= 4
+  min_size           		= 2
+
+  health_check_grace_period 	= 300
+  health_check_type         	= "EC2"
 
   launch_template {
     id      = "${aws_launch_template.eliwyman_ubuntu.id}"
