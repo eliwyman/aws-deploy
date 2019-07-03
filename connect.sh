@@ -1,1 +1,1 @@
-ssh -i "/Users/el/Google Drive/login.pem" $AWSUSR@$AWSHOST 
+ssh -i "/home/el/Projects/AWS-POC/temp/login.pem" $AWSUSR@$AWSHOST 
