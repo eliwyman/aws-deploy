@@ -15,6 +15,11 @@ resource "aws_launch_template" "eliwyman_ubuntu" {
   image_id		= "ami-0653e888ec96eab9b"
   instance_type 	= "t2.nano"
   key_name		= "login"
+
+  monitoring {
+    enabled = true
+  }
+
   user_data		= "${base64encode(file("userdata.tpl"))}"
   vpc_security_group_ids = ["sg-3c83ff52"]
 
