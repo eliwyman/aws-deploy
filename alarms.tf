@@ -8,9 +8,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu" {
   statistic                 = "Average"
   threshold                 = "50"
   alarm_description         = "This metric monitors ec2 cpu utilization"
-  alarm_actions             = [ "${aws_sns_topic.alarm.arn}" ]
-  alarm_actions		    = [ "${aws_autoscaling_policy.eliwyman_asgp.arn}"]
-
+  alarm_actions             = [ "${aws_sns_topic.alarm.arn}", "${aws_autoscaling_policy.eliwyman_asgp.arn}"]
 
   dimensions {
     AutoScalingGroupName = "${aws_autoscaling_group.eliwyman_asg.name}"
