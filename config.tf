@@ -62,7 +62,7 @@ resource "aws_launch_template" "eliwyman_ubuntu" {
 resource "aws_autoscaling_group" "eliwyman_asg" {
 
 #  (Required only for EC2-Classic)
-  availability_zones 		= ["us-east-2a"]
+  availability_zones 		= ["us-east-2a", "us-east-2b", "us-east-2c"]
 
   desired_capacity   		= 2
   max_size           		= 4
@@ -120,6 +120,7 @@ resource "aws_security_group" "alb" {
 resource "aws_alb" "alb" {
   name            = "terraform-example-alb"
   security_groups = ["${aws_security_group.alb.id}"]
+  subnets         = ["${aws_subnet.main.*.id}"]
   tags {
     Name = "terraform-example-alb"
   }
@@ -129,14 +130,9 @@ resource "aws_alb_target_group" "group" {
   name     = "terraform-example-alb-target"
   port     = 80
   protocol = "HTTP"
-  #vpc_id   = "${aws_vpc.vpc.id}"
+  vpc_id   = "${aws_vpc.vpc.id}"
   stickiness {
     type = "lb_cookie"
-  }
-  # Alter the destination of the health check to be the login page.
-  health_check {
-    path = "/login"
-    port = 80
   }
 }
 
